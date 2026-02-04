@@ -16,3 +16,11 @@ providers:
 
     # Reload dashboards every 30 seconds
     updateIntervalSeconds: 30
+  - name: node-exporter-dashboards  # Logical name for this provider
+    orgId: 1                        # Default Grafana org
+    folder: "Node Exporter"         # Folder in Grafana UI
+    type: file                      # Dashboards loaded from filesystem
+    disableDeletion: false          # Allow Grafana to delete dashboards
+    updateIntervalSeconds: 30       # Watch for file changes
+    options:
+      path: /var/lib/grafana/dashboards

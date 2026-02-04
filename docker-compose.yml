@@ -50,6 +50,8 @@ services:
       - grafana_data:/var/lib/grafana
       # Auto-provision datasources and dashboards
       - ./grafana/provisioning:/etc/grafana/provisioning
+      # Dashboards JSON files live here
+      - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
     environment:
       # Default admin credentials (CHANGE LATER)
       - GF_SECURITY_ADMIN_USER=admin
