@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS homelabdb;
 
-CREATE USER IF NOT EXISTS 'homelabuser'@'%' IDENTIFIED BY 'admin@12345';
-GRANT ALL PRIVILEGES ON homelabdb.* TO 'homelabuser'@'%';
+CREATE USER IF NOT EXISTS 'adminuser'@'%' IDENTIFIED BY 'adminpass';
+GRANT ALL PRIVILEGES ON homelabdb.* TO 'adminuser'@'%';
 
 FLUSH PRIVILEGES;
