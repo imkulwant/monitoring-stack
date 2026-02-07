@@ -5,14 +5,13 @@ A lightweight homelab platform for running shared infrastructure services on a s
 ### What this provides
 
 - [Observability](observability/README.md) stack with Prometheus, Grafana, Node Exporter, and Zipkin.
-- Data services (MySQL, Redis)
+- [Data services](data/README.md) (MySQL, Redis)
 
 ### Repository structure
 
 ```text
 homelab-platform/
 ├── data/             # reserved for data services
-│   ├── backups/
 │   ├── mysql/
 │   └── redis/
 │

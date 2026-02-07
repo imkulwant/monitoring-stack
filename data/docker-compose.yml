@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+
+    # Secrets & configuration injected from env file
+    env_file:
+      - ../shared/env/mysql.env
+
+    # Volumes:
+    # - mysql_data: actual database files
+    # - init/: bootstrap SQL (first run only)
+    # - my.cnf: MySQL server tuning
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+
+    ports:
+      - "3306:3306"
+
+    networks:
+      - platform
+
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+
+    # Explicit config instead of defaults
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+    volumes:
+      - redis_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+
+    ports:
+      - "6379:6379"
+
+    networks:
+      - platform
+
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  platform:
+    external: true
