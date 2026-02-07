@@ -21,6 +21,9 @@ services:
       - "9090:9090"
     # Restart policy, automatically restart unless explicitly stopped
     restart: unless-stopped
+    networks:
+      - platform
+
   node-exporter:
     # Exposes host-level metrics (CPU, memory, disk, etc.)
     image: prom/node-exporter:latest
@@ -41,6 +44,9 @@ services:
       # Expose metrics endpoint
       - "9100:9100"
     restart: unless-stopped
+    networks:
+      - platform
+
   grafana:
     # Grafana visualizes metrics collected by Prometheus
     image: grafana/grafana:latest
@@ -60,14 +66,23 @@ services:
       # Grafana UI
       - "3000:3000"
     restart: unless-stopped
+    networks:
+      - platform
+
   zipkin:
     image: openzipkin/zipkin:latest
     container_name: zipkin
     ports:
       - "9411:9411"
     restart: unless-stopped
+    networks:
+      - platform
 
 volumes:
   # Named volumes survive container restarts and upgrades
   prometheus_data:
   grafana_data:
+
+networks:
+  platform:
+    external: true
