@@ -11,13 +11,14 @@ A lightweight homelab platform for running shared infrastructure services on a s
 
 ```text
 homelab-platform/
-├── observability/    # monitoring & tracing stack
-│   ├── prometheus/
-│   ├── grafana/
-│   └── zipkin/
+├── data/             # reserved for data services
+│   ├── backups/
+│   ├── mysql/
+│   └── redis/
 │
-└── data/             # reserved for data services
-    ├── mysql/
-    ├── redis/
-    └── backups/
+├── observability/    # monitoring & tracing stack
+│   ├── grafana/
+│   └── prometheus/
+│
+└── scripts/
 ```
